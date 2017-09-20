@@ -22,7 +22,11 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
-       return $this->objCategoryRPY->forTables($request);
+      $table= $this->objCategoryRPY->forTables($request);
+       //return view('catalogs.categories.index',compact('table'));
+       return view('catalogs.categories.index')->with([
+           'table'=>$table
+       ]);
     }
 
     /**
@@ -43,7 +47,13 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,['name','description']);
+        $this->validate($request,
+        ['name'=>'required','description'=>'required'],
+        ['name.required'=>'El nombre es obligatorio',
+         'description.required'=>'El description es obligatorio']);
+        
+         $this->objCategoryRPY->forSave($request);
+
     }
 
     /**
@@ -77,7 +87,13 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $this->validate($request,
+        ['name'=>'required','description'=>'required'],
+        ['name.required'=>'El nombre es obligatorio',
+         'description.required'=>'El description es obligatorio']);
+        
+         $this->objCategoryRPY->forUpdate($request,$category);
+
     }
 
     /**

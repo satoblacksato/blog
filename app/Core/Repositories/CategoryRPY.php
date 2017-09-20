@@ -14,4 +14,16 @@ class CategoryRPY{
         }
     }
 
+    public function forSave(Request $request){
+        $objCategory=new Category();
+        $objCategory->fill($request->all());
+       // $objCategory->name=$request->name;
+        $objCategory->save();
+    }
+
+    public function forUpdate(Request $request,Category $objCategory){
+        $objCategory->fill($request->all());
+        $objCategory->save();
+    }
+
 }
