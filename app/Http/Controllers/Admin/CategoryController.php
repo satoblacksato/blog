@@ -5,17 +5,24 @@ namespace App\Http\Controllers\Admin;
 use App\Core\Entities\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use App\Core\Repositories\CategoryRPY;
 class CategoryController extends Controller
 {
+   
+   private $objCategoryRPY;
+
+    function __construct(CategoryRPY $objCategoryRPY) {
+         $this->objCategoryRPY=$objCategoryRPY;
+    }
+   
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+       return $this->objCategoryRPY->forTables($request);
     }
 
     /**
@@ -36,7 +43,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,['name','description']);
     }
 
     /**
