@@ -9,7 +9,10 @@ class CategoryRPY{
         if($request->ajax()){
             //para datatable
         }else{
-            $result=Category::orderBy('name','ASC')->paginate(2);
+            $filter=$request->filter;
+            $result=Category::orderBy('name','ASC')
+            ->where('name','LIKE',"%$filter%")
+            ->paginate(2)->appends('filter',$filter);
             return $result;
         }
     }

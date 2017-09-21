@@ -25,7 +25,7 @@ class CategoryController extends Controller
       $table= $this->objCategoryRPY->forTables($request);
        //return view('catalogs.categories.index',compact('table'));
        return view('catalogs.categories.index')->with([
-           'table'=>$table
+           'table'=>$table,'filter'=>$request->filter
        ]);
     }
 
@@ -36,7 +36,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('catalogs.categories.create');
     }
 
     /**
@@ -48,11 +48,11 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,
-        ['name'=>'required','description'=>'required'],
+        ['name'=>'required|unique:categories,name','description'=>'required'],
         ['name.required'=>'El nombre es obligatorio',
-         'description.required'=>'El description es obligatorio']);
-        
+         'description.required'=>'La descripcion es obligatoria']);
          $this->objCategoryRPY->forSave($request);
+         return redirect()->route('catalogos.categories.index');
 
     }
 
@@ -64,7 +64,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        return view('catalogs.categories.show',compact('category'));
     }
 
     /**
@@ -75,7 +75,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('catalogs.categories.edit',compact('category'));
     }
 
     /**
@@ -93,7 +93,7 @@ class CategoryController extends Controller
          'description.required'=>'El description es obligatorio']);
         
          $this->objCategoryRPY->forUpdate($request,$category);
-
+         return redirect()->route('catalogos.categories.index');
     }
 
     /**
