@@ -1,0 +1,19 @@
+#pageLoader
+{
+    background: rgba( 0, 0, 0, 0.7 );
+    display: none;
+    height: 100%;
+    position: fixed;
+    width: 100%;
+    z-index: 999999;
+}
+
+#pageLoader i
+{
+    left: 50%;
+    margin-left: -32px;
+    margin-top: -32px;
+    position: absolute;
+    top: 50%;
+    color: #ffffff;
+}

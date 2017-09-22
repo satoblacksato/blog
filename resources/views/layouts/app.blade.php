@@ -12,9 +12,15 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/blog.css') }}" rel="stylesheet">
+    <link href="{{ asset('plugins/notifications/pnotify.custom.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('plugins/notifications/sweetalert.css') }}" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
+<div id="pageLoader">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+</div>
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
@@ -76,5 +82,8 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/utils.js') }}"></script>
+    <script src="{{ asset('plugins/notifications/pnotify.min.js') }}"></script>
+    <script src="{{ asset('plugins/notifications/sweet_alert.min.js') }}"></script>
 </body>
 </html>
