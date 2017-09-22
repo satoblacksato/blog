@@ -53,6 +53,9 @@
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
+                            <li><a href="{{ route('catalogos.categories.index') }}">Categorias</a>
+                            </li>
+                            
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -77,6 +80,9 @@
                 </div>
             </div>
         </nav>
+        <div class="col-lg-8 col-lg-offset-2">
+            {!! Messages::render() !!}
+        </div>
         @yield('content')
     </div>
 
@@ -85,5 +91,12 @@
     <script src="{{ asset('js/utils.js') }}"></script>
     <script src="{{ asset('plugins/notifications/pnotify.min.js') }}"></script>
     <script src="{{ asset('plugins/notifications/sweet_alert.min.js') }}"></script>
+    <script>
+        $('.alert').not('.important').delay(7000).slideUp(350);
+        console.log("%c¡Detente!", "font-family: ';Arial';, serif; font-weight: bold; color: red; font-size: 45px");
+        console.log("%cEsta función del navegador está pensada para desarrolladores. Si alguien te indicó que copiaras y pegaras algo aquí para habilitar una función del sitio o para PIRATEAR la cuenta de alguien, se trata de un fraude.", "font-family: ';Arial';, serif; color: black; font-size: 20px");
+        console.log("%cSi lo haces, esta persona podrá acceder a tu cuenta y datos personales.", "font-family: ';Arial';, serif; color: black; font-size: 20px");
+    </script>
+    @yield('masterJS')
 </body>
 </html>
