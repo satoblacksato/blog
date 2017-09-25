@@ -7,18 +7,14 @@
             <img src="/img/book.png" style="width: 150px;
     height: 120px;"/>
 
-            <button class="btn btn-primary btn-block">
+            <button id="btnPost" class="btn btn-primary btn-block">
                 <i class="fa fa-book"></i>
             PUBLICAR</button>
          <hr/>
             <div class="list-group">
-                <a href="#" class="list-group-item">
-                    Cras justo odio
-                </a>
-                <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-                <a href="#" class="list-group-item">Morbi leo risus</a>
-                <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-                <a href="#" class="list-group-item">Vestibulum at eros</a>
+                @foreach($categories as $category)
+                    <a href="#" class="list-group-item">{{$category->name}}</a>
+                @endforeach
             </div>
         </div>
         <div class="col-md-8">
@@ -38,4 +34,17 @@
         </div>
     </div>
 </div>
+
+<create-book></create-book>
+
+@endsection
+@section('masterJS')
+    <script src="{{asset('components/create_book.tag')}}" 
+        type="riot/tag"></script>
+
+    <script>
+        $("#btnPost").on('click',function(){
+                riot.mount('create-book',{id:0});
+        }); 
+    </script>
 @endsection

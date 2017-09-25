@@ -91,6 +91,8 @@
     <script src="{{ asset('js/utils.js') }}"></script>
     <script src="{{ asset('plugins/notifications/pnotify.min.js') }}"></script>
     <script src="{{ asset('plugins/notifications/sweet_alert.min.js') }}"></script>
+    <script src="{{ asset('plugins/riot/riot.min.js') }}"></script>
+    <script src="{{ asset('plugins/riot/riot-compiler.min.js') }}"></script>
     <script>
         $('.alert').not('.important').delay(7000).slideUp(350);
         console.log("%c¡Detente!", "font-family: ';Arial';, serif; font-weight: bold; color: red; font-size: 45px");

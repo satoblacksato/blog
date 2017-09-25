@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Core\Repositories\CategoryRPY;
 class HomeController extends Controller
 {
     /**
@@ -23,6 +23,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $categoryRPY=new CategoryRPY();
+        $categories=$categoryRPY->forAll();
+        return view('home',compact('categories'));
     }
 }

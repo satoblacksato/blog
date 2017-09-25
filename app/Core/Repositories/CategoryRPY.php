@@ -29,4 +29,7 @@ class CategoryRPY{
         $objCategory->save();
     }
 
+    public function forAll(){
+        return Category::all();
+    }
 }
