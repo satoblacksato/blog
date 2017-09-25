@@ -36,7 +36,7 @@
 </div>
 
 <create-book></create-book>
-
+{!!csrf_field()!!}
 @endsection
 @section('masterJS')
     <script src="{{asset('components/create_book.tag')}}" 
@@ -44,7 +44,10 @@
 
     <script>
         $("#btnPost").on('click',function(){
-                riot.mount('create-book',{id:0});
+                riot.mount('create-book',{id:0,
+                                         title:'CREAR LIBRO',
+                                         token:$("input[name='_token']").val()
+                                         });
         }); 
     </script>
 @endsection

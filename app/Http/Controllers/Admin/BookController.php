@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use App\Core\Entities\Category;
 use App\Core\Entities\Book;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use Auth;
 class BookController extends Controller
 {
     /**
@@ -36,7 +36,17 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,['title'=>'required',
+        'description'=>'required','categoria'=>'required',
+        'picture'=>'required']);
+
+        $category=Category::findOrFail($request->categoria);
+        $objBook=new Book();
+        $objBook->fill($request->all());
+        $objBook->user_id=Auth::user()->id;
+        $request->file('picture')->store('public');
+        $category->books()->save($objBook);
+        return response()->json('GUARDADO CORRECTAMENTE',200);
     }
 
     /**

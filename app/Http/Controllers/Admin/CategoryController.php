@@ -111,4 +111,12 @@ class CategoryController extends Controller
          Messages::infoRegisterCustom('Registro Eliminado Correctamente');
          return redirect()->route('catalogos.categories.index');
     }
+
+    public function listSelect(Request $request){
+        if($request->ajax()){
+            return response()->json(Category::get(['name','id']));
+        }else{
+            abort(401);
+        }
+    }
 }
