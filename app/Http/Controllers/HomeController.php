@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Core\Repositories\CategoryRPY;
+use Auth;
 class HomeController extends Controller
 {
     /**
@@ -25,6 +26,10 @@ class HomeController extends Controller
     {
         $categoryRPY=new CategoryRPY();
         $categories=$categoryRPY->forAll();
-        return view('home',compact('categories'));
+
+        $user=Auth::user();
+        $user->load('books.category');
+        $books=$user->books;
+        return view('home',compact('categories','books'));
     }
 }

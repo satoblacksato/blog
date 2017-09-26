@@ -28,7 +28,12 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    @foreach($books as $book)
+
+                        {{$book->title}}
+                        {{$book->category->name}}
+                    @endforeach
+
                 </div>
             </div>
         </div>

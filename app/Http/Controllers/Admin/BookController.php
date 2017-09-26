@@ -1,11 +1,14 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use App\Http\Requests\BookRequest;
 use App\Core\Entities\Category;
 use App\Core\Entities\Book;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
+use Storage;
+use File;
 class BookController extends Controller
 {
     /**
@@ -34,17 +37,15 @@ class BookController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BookRequest $request)
     {
-        $this->validate($request,['title'=>'required',
-        'description'=>'required','categoria'=>'required',
-        'picture'=>'required']);
-
+      
         $category=Category::findOrFail($request->categoria);
         $objBook=new Book();
-        $objBook->fill($request->all());
+        $objBook->fill($request->validated());
         $objBook->user_id=Auth::user()->id;
-        $request->file('picture')->store('public');
+        Storage::disk('public')
+            ->put($objBook->picture, File::get($request->picture));
         $category->books()->save($objBook);
         return response()->json('GUARDADO CORRECTAMENTE',200);
     }

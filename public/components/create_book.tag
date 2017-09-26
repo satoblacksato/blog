@@ -80,7 +80,8 @@
             headers:{'X-CSRF-TOKEN':opts.token},
 
             success: function(msg){
-                alert('ok');
+                    alertToastSuccess('Libro publicado correctamente',3000);
+                    $("#dvCreateBook .close").click();
             },
             error: function(xhr, status) {
                 if( xhr.status == 422 ) {
