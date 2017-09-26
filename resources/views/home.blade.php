@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-4 text-center">
+        <div class="col-md-3 text-center">
             <img src="/img/book.png" style="width: 150px;
     height: 120px;"/>
 
@@ -17,7 +17,7 @@
                 @endforeach
             </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-9">
             <div class="panel panel-primary">
                 <div class="panel-heading ">MIS LIBROS</div>
 
@@ -28,12 +28,27 @@
                         </div>
                     @endif
 
-                    @foreach($books as $book)
-
-                        {{$book->title}}
-                        {{$book->category->name}}
-                    @endforeach
-
+                    <div class="row">
+                        @foreach($books as $book)
+                        <div class="col-lg-4">
+                            <div class="thumbnail">
+                            <img class="thumbnail"
+                             src="{{route('blog.imagenes',$book->picture)}}" 
+                            alt="IMAGEN NO ENCONTRADA">
+                            <div class="caption">
+                                <h3>{{$book->title}}</h3>
+                                <p> {{$book->category->name}}</p>
+                                <p>{{$book->description}}</p>
+                                <p>
+                                    <a href="{{route('blog.comentarios',$book->slug)}}" class="btn btn-primary" role="button">COMENTAR</a> 
+                                        &nbsp;<i class="fa fa-clock-o fa-spin"></i>
+                                        {{$book->created_at->diffForHumans()}}
+                                </p>
+                            </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
