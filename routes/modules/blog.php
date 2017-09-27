@@ -25,3 +25,7 @@ Route::group(['prefix' => 'blog',
     ->name('comentarios');
 });
 
+Route::get('mail',function(){
+    Mail::send(new \App\Mail\BookMail('uno','dos','tres'));
+   //return new \App\Mail\BookMail('uno','dos','tres');
+});

@@ -6,12 +6,13 @@
     "type": "project",
     "require": {
         "php": ">=7.0.0",
+        "cviebrock/eloquent-sluggable": "^4.3",
         "fideloper/proxy": "~3.3",
+        "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
         "laraveles/spanish": "^1.0",
-        "styde/html": "~1.4",
-        "cviebrock/eloquent-sluggable": "^4.3"
+        "styde/html": "~1.4"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.1",

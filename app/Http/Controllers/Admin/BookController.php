@@ -18,7 +18,7 @@ class BookController extends Controller
         $category=Category::findOrFail($request->categoria);
         $objBook=new Book();
         $objBook->fill($request->validated());
-        $objBook->user_id=Auth::user()->id;
+      
         Storage::disk('public')
             ->put($objBook->picture, File::get($request->picture));
         $category->books()->save($objBook);
