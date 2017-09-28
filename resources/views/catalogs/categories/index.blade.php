@@ -58,8 +58,20 @@
     </div>
     {!!Form::open(['method'=>'DELETE','id'=>'frmDelete'])!!}
     {!!Form::close()!!}
+    <div class="row">
+        <table class="table" id="tableCategories">
+                        <thead>
+                            <th>NOMBRES</th>
+                            <th>DESCRIPCION</th>
+                            <th>ACCIONES</th>
+                        </thead>
+        </table>
+    </div>
+
 @endsection
 @section('masterJS')
+{!!Html::script('plugins/datatables/jquery.dataTables.min.js')!!}
+
     <script>
         $("a[action=delete]").on('click',function(){
             var _url=$(this).attr('url');
@@ -80,5 +92,28 @@
                     }
                 });
         });
+
+
+        $(function(){
+            $.fn.dataTable.ext.errMode = 'throw';
+                $('#tableCategories').DataTable({
+                    responsive: true,
+                    "aoColumnDefs": [],
+                    "processing": true,
+                    "serverSide": true,
+                    "deferRender": true,
+                    "destroy": true,
+                    "ajax": '/catalogos/categories-tables',
+                    "columns": [
+                        {data: 'name'},
+                        {data: 'description'},
+                        {data: 'description'}
+                    ],
+                    "order": []
+                }).ajax.reload();
+        });
     </script>
+@endsection
+
+@section('masterCSS')
 @endsection

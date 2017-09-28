@@ -6,7 +6,7 @@ Route::group(['prefix' => 'catalogos',
     Route::namespace('Admin')->group(function () {
         Route::resource('categories','CategoryController');
         Route::get('categories-select','CategoryController@listSelect');
-
+        Route::get('categories-tables','CategoryController@dataTables');
 
         Route::post('books','BookController@store');
     });
@@ -29,3 +29,10 @@ Route::get('mail',function(){
     Mail::send(new \App\Mail\BookMail('uno','dos','tres'));
    //return new \App\Mail\BookMail('uno','dos','tres');
 });
+
+
+Route::get('auth/{provider}', 
+    'Auth\SocialAuthController@redirectToProvider')->name('social.auth');
+Route::get('auth/{provider}/callback', 'Auth\SocialAuthController@handleProviderCallback');
+
+

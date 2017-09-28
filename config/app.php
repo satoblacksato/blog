@@ -179,6 +179,8 @@ return [
 
         Laraveles\Spanish\SpanishServiceProvider::class,
 
+        Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
+
     ],
 
     /*
