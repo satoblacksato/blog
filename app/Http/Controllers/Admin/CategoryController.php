@@ -90,6 +90,8 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
+        $this->authorize('update', $category);
+        
         $this->validate($request,
         ['name'=>'required','description'=>'required'],
         ['name.required'=>'El nombre es obligatorio',

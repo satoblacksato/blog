@@ -4,11 +4,17 @@ Route::group(['prefix' => 'catalogos',
                  'as'=>'catalogos.' ], function () {
 
     Route::namespace('Admin')->group(function () {
-        Route::resource('categories','CategoryController');
-        Route::get('categories-select','CategoryController@listSelect');
-        Route::get('categories-tables','CategoryController@dataTables');
 
-        Route::post('books','BookController@store');
+        Route::group(['middleware' => 'auth'], function () {
+            Route::group(['middleware' => 'category_actions:LUNES_MARTES'], function () {
+                 Route::resource('categories','CategoryController');
+            });
+            
+            Route::get('categories-select','CategoryController@listSelect');
+            Route::get('categories-tables','CategoryController@dataTables');
+
+            Route::post('books','BookController@store');
+        });
     });
 });
     

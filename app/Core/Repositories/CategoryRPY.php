@@ -20,6 +20,7 @@ class CategoryRPY{
     public function forSave(Request $request){
         $objCategory=new Category();
         $objCategory->fill($request->all());
+        $objCategory->user_id=\Auth::user()->id;
        // $objCategory->name=$request->name;
         $objCategory->save();
     }

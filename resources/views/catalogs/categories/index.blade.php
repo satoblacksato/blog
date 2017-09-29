@@ -35,9 +35,13 @@
                             <tr>
                                 <td>{{$item->name}}</td>
                                 <td>{{$item->description}}</td>
-                                <td><a class="btn btn-primary btn-xs"
-                                    href="{{route('catalogos.categories.edit',$item->id)}}"
-                                >EDITAR</a>
+                                <td>
+                                @can('update', $item)
+                                    <a class="btn btn-primary btn-xs"
+                                        href="{{route('catalogos.categories.edit',$item->id)}}"
+                                    >EDITAR</a>
+                                @endcan
+
                                 <a class="btn btn-success btn-xs"
                                     href="{{route('catalogos.categories.show',$item->id)}}"
                                 >VER</a>
