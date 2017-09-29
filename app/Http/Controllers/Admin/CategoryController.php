@@ -121,6 +121,12 @@ class CategoryController extends Controller
     }
 
     public function dataTables(){
-        return datatables()->of(Category::all())->make(true);
+        return datatables()->of(Category::all())
+        ->addColumn('botones',
+                 '<a class="btn btn-danger btn-xs"
+                    action="delete" href="#" onclick="deleteData(this);"
+                    url="{{route(\'catalogos.categories.destroy\',$id)}}"
+                    >ELIMINAR</a>')
+        ->make(true);
     }
 }

@@ -58,14 +58,18 @@
     </div>
     {!!Form::open(['method'=>'DELETE','id'=>'frmDelete'])!!}
     {!!Form::close()!!}
-    <div class="row">
-        <table class="table" id="tableCategories">
-                        <thead>
-                            <th>NOMBRES</th>
-                            <th>DESCRIPCION</th>
-                            <th>ACCIONES</th>
-                        </thead>
-        </table>
+    <hr/>
+    <div class="col-lg-12">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="tableCategories">
+                            <thead>
+                                <th>NOMBRES</th>
+                                <th>DESCRIPCION</th>
+                                <th>ACCIONES</th>
+                            </thead>
+            </table>
+        </div>
+        
     </div>
 
 @endsection
@@ -73,8 +77,9 @@
 {!!Html::script('plugins/datatables/jquery.dataTables.min.js')!!}
 
     <script>
-        $("a[action=delete]").on('click',function(){
-            var _url=$(this).attr('url');
+
+        function  deleteData(_btn){
+            var _url=$(_btn).attr('url');
                 swal({
                     title: "",
                     text: "Est\u00E1s seguro que deseas eliminar el registro",
@@ -91,6 +96,9 @@
                         $("#frmDelete").submit();
                     }
                 });
+        }
+        $("a[action=delete]").on('click',function(){
+           deleteData(this);
         });
 
 
@@ -107,7 +115,12 @@
                     "columns": [
                         {data: 'name'},
                         {data: 'description'},
-                        {data: 'description'}
+                        {data: 'botones', "bSortable": false, 
+                            "searchable": false, "targets": 0,
+                            "render":function(data, type, row ){
+                                return   $('<div />').html(row.botones).text();
+                            }
+                         }
                     ],
                     "order": []
                 }).ajax.reload();
@@ -116,4 +129,5 @@
 @endsection
 
 @section('masterCSS')
+  <link href="{{asset('plugins/datatables/datatable-custom.css')}}"/>      
 @endsection
